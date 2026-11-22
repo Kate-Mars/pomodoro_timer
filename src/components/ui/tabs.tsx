@@ -1,0 +1,36 @@
+import * as React from 'react';
+import { Tabs as TabsPrimitive } from 'radix-ui';
+import { cn } from '@/lib/utils';
+
+function Tabs({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Root>) {
+  return <TabsPrimitive.Root data-slot="tabs" className={cn('flex flex-col gap-4', className)} {...props} />;
+}
+
+function TabsList({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.List>) {
+  return (
+    <TabsPrimitive.List
+      data-slot="tabs-list"
+      className={cn('bg-input/40 text-muted-foreground inline-flex h-10 w-fit items-center justify-center rounded-md p-1 shadow-[inset_0_2px_0_rgb(0_0_0/0.25)]', className)}
+      {...props}
+    />
+  );
+}
+
+function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
+  return (
+    <TabsPrimitive.Trigger
+      data-slot="tabs-trigger"
+      className={cn(
+        "data-[state=active]:bg-secondary data-[state=active]:text-foreground data-[state=active]:shadow-[inset_0_1px_0_rgb(255_255_255/0.1),inset_0_-2px_0_rgb(0_0_0/0.25)] focus-visible:ring-ring/50 inline-flex h-full flex-1 items-center justify-center gap-1.5 rounded-[5px] px-3 py-1 text-sm font-semibold whitespace-nowrap transition-[color,box-shadow,background-color] focus-visible:ring-[3px] focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function TabsContent({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Content>) {
+  return <TabsPrimitive.Content data-slot="tabs-content" className={cn('flex-1 outline-none', className)} {...props} />;
+}
+
+export { Tabs, TabsList, TabsTrigger, TabsContent };
